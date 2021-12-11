@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using OxyPlot;
 using RoHGraphRenderingWinForm.Сlasses;
@@ -16,6 +9,7 @@ namespace RoHGraphRenderingWinForm.UserControls
     {
         public PlotModel Model { get; } = new PlotModel();
         private Graph graph = new();
+
         public GraphRenderingUserControl()
         {
             InitializeComponent();
@@ -27,6 +21,18 @@ namespace RoHGraphRenderingWinForm.UserControls
             plotView.Model = Model;
             ModelUpdate();
         }
+
+        public void SetConstants(double brightness, double range, double attenuation0, double attenuation1,
+            double attenuation2)
+        {
+            graph.Brightness = brightness;
+            graph.Range = range;
+            graph.Attenuation0 = attenuation0;
+            graph.Attenuation1 = attenuation1;
+            graph.Attenuation2 = attenuation2;
+            ModelUpdate();
+        }
+
         private void ModelUpdate()
         {
             Model.Series.Clear();
